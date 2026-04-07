@@ -36,10 +36,16 @@ public class TodolistApplication implements CommandLineRunner {
 
 
 	public void run(String... args) throws Exception {
-		Category menage = categoryRepository.save(new Category("Menage"));
-		Progression todo = progressionRepository.save(new Progression("To do"));
-		User firstuser =  userRepository.save(new User("FirstUser"));
-		taskRepository.save(new Task("Ranger le salon", new Date(),"les enfants font le bazzar",menage,todo,firstuser));
+//		Category menage = categoryRepository.save(new Category("Menage"));
+//		Progression todo = progressionRepository.save(new Progression("To do"));
+//		User firstuser =  userRepository.save(new User("FirstUser"));
+//		taskRepository.save(
+//				new Task(
+//						"Ranger le salon",
+//						new Date(),
+//						"les enfants font le bazzar",
+//						menage,todo,firstuser
+//				));
 	}
 
 }
