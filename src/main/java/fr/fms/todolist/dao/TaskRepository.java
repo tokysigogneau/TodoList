@@ -1,4 +1,7 @@
 package fr.fms.todolist.dao;
 
-public class TaskRepository {
+import fr.fms.todolist.entities.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
 }
