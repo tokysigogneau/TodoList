@@ -15,25 +15,21 @@
         <div class="pannel-heading" >Créer une nouvelle tâche</div>
         <div class="pannel-body" >
             <form th:action="@{/save}" method="post">
-                <div class="form-group">
+
+            <div class="form-group">
                     <label class="control-label"> Name</label>
                     <input class="form-control" type="text" name="name" th:value="${task.name}">
                     <span th:errors="${task.name}" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label"> Date</label>
-                    <input class="form-control" type="date" name="date" th:value="${task.date}">
+                    <input class="form-control" type="datetime-local" name="date" th:value="${task.date}">
                     <span th:errors="${task.date}" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label"> Description</label>
                     <input class="form-control" type="text" name="description" th:value="${task.description}">
                     <span th:errors="${task.description}" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> Price</label>
-                    <input class="form-control" type="number" name="price" th:value="${task.price}">
-                    <span th:errors="${task.price}" class="text-danger"></span>
                 </div>
 
                 <!--                    Change category to display choices from existing category-->
@@ -44,7 +40,8 @@
                 </select>
 
 <!--                Hide the progression choice : put "To do" by default-->
-                <input type="hidden" name="progression" th:value="To do">
+                <input type="hidden" name="progression" th:value="1">
+                <input type="hidden" name="user" th:value="1">
 
 
                 <button type="submit">Submit</button>
