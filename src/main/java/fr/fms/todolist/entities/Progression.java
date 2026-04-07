@@ -1,15 +1,13 @@
 package fr.fms.todolist.entities;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
 
+@Entity
 public class Progression implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +20,7 @@ public class Progression implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "progression")
+    @ElementCollection(targetClass = Task.class)
     private Collection<Task> tasks;
 
     public Progression(){
