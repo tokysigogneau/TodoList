@@ -10,6 +10,15 @@ public class TaskController {
     @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    ProgressionRepository progressionRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/index")
     public String index(){
         return "home";
