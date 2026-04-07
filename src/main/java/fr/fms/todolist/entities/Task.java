@@ -40,12 +40,16 @@ public class Task implements Serializable {
     @ManyToOne
     private Progression progression;
 
-    public Task(String name, Date date, String description, Category category, Progression progression){
+    @ManyToOne
+    private User user;
+
+    public Task(String name, Date date, String description, Category category, Progression progression, User user){
         this.name = name;
         this.date = date;
         this.description = description;
         this.category = category;
         this.progression = progression;
+        this.user = user;
     }
 
     public String toString(){
@@ -99,6 +103,14 @@ public class Task implements Serializable {
 
     public void setProgression(Progression progression) {
         this.progression = progression;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     //endregion
