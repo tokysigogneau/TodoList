@@ -1,4 +1,8 @@
 package fr.fms.todolist.dao;
 
-public class CategoryRepository {
+import fr.fms.todolist.entities.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category,Long> {
+
 }
