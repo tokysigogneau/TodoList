@@ -9,11 +9,15 @@ import fr.fms.todolist.entities.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -56,4 +60,28 @@ public class TaskController {
         model.addAttribute("keyword", cat_id);
         return "my_tasks";
     }
+
+    //Display needed info to create a new task
+    @GetMapping("/create_task")
+    public String newTask(Model model) {
+        model.addAttribute("task", new Task());
+        model.addAttribute("category_list", categoryRepository.findAll());
+        return "create_task";
+    }
+
+    // create a new task
+    @PostMapping("/save")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public String save(@Valid Task task, BindingResult bindingResult, Model model) {
+
+        if(bindingResult.hasErrors()) {
+            return "create_task";
+        }
+
+        taskRepository.save(task);
+        return "redirect:/index";
+    }
+
+
+
 }
