@@ -28,6 +28,7 @@ public class Task implements Serializable {
     private String name;
 
     @NotNull
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date date;
 
     @NotNull
