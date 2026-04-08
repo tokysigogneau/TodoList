@@ -22,7 +22,11 @@
             <div class="panel-heading">Task par categories</div>
 
             <div class="panel-body">
-
+                <ul>
+                    <a th:href="@{'/my_tasks'(page=0, category=0, keyword=${keyword})}">
+                        Toutes categories
+                    </a>
+                </ul>
                 <ul class="d-flex cat-button" th:each="a : ${category_list}">
                     <a th:href="@{'/my_tasks'(page=${currentPage}, category=${a.id}, keyword=${keyword})}"
                        th:text="${a.name}"></a>
