@@ -131,6 +131,15 @@ public class TaskController {
         return "redirect:/my_tasks";
     }
 
+    //Delete selected task
+    @GetMapping("/delete")
+    public String delete(Long id, int page, String keyword){
+
+        taskRepository.deleteById(id);
+
+        return "redirect:/my_tasks?page="+page+"&keyword="+keyword;
+    }
+
 
 
 }
