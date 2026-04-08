@@ -22,16 +22,21 @@
             <div class="panel-heading">Task par categories</div>
 
             <div class="panel-body">
-                <ul>
-                    <a th:href="@{'/my_tasks'(page=0, category=0, keyword=${keyword})}">
-                        Toutes categories
-                    </a>
-                </ul>
-                <ul class="d-flex cat-button" th:each="a : ${category_list}">
-                    <a th:href="@{'/my_tasks'(page=${currentPage}, category=${a.id}, keyword=${keyword})}"
-                       th:text="${a.name}"></a>
+                <ul class="d-flex cat-button">
+                    <li>
+                        <a class="btn btn-primary" th:href="@{'/my_tasks'(page=0, category=0, keyword=${keyword})}">
+                            Toutes categories
+                        </a>
+                    </li>
+
+                    <li class="btn btn-outline-primary" th:each="a : ${category_list}">
+                        <a th:href="@{'/my_tasks'(page=${currentPage}, category=${a.id}, keyword=${keyword})}"
+                           th:text="${a.name}"></a>
+                    </li>
 
                 </ul>
+
+
 
             </div>
 
@@ -59,7 +64,7 @@
                     <tr th:each="a:${listTasks}">
                         <td th:text="${a.id}"></td>
                         <td >
-                            <a class="btn btn-info" th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
+                            <a th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
 
                             </a>
                         </td>
