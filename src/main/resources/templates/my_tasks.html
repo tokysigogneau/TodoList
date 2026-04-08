@@ -58,7 +58,11 @@
                     </tr>
                     <tr th:each="a:${listTasks}">
                         <td th:text="${a.id}"></td>
-                        <td th:text="${a.name}"></td>
+                        <td >
+                            <a class="btn btn-info" th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
+
+                            </a>
+                        </td>
                         <td th:text="${a.date}"></td>
                         <td th:text="${a.description}"></td>
                         <td th:text="${a.category.name}"></td>
