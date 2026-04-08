@@ -5,6 +5,7 @@ import fr.fms.todolist.dao.ProgressionRepository;
 import fr.fms.todolist.dao.TaskRepository;
 import fr.fms.todolist.dao.UserRepository;
 import fr.fms.todolist.entities.Category;
+import fr.fms.todolist.entities.Progression;
 import fr.fms.todolist.entities.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,6 +50,7 @@ public class TaskController {
     ){
         // list of all categories
         List<Category> categories = categoryRepository.findAll();
+        List<Progression> progressions = progressionRepository.findAll();
 
         Page<Task> cat_task;
         //List of task by category, format : Page
@@ -65,6 +67,7 @@ public class TaskController {
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
         model.addAttribute("cat_id", cat_id);
+        model.addAttribute("progressions", progressions);
 
         return "my_tasks";
     }
@@ -138,6 +141,23 @@ public class TaskController {
         taskRepository.deleteById(id);
 
         return "redirect:/my_tasks?page="+page+"&keyword="+keyword;
+    }
+
+    //Update progression on the table directly
+    @PostMapping("/update_progression/{id}")
+    public String updateProgression(@PathVariable Long id,
+                                    @RequestParam Long progressionId) {
+
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid task id"));
+
+        Progression progression = progressionRepository.findById(progressionId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid progression id"));
+
+        task.setProgression(progression);
+        taskRepository.save(task);
+
+        return "redirect:/my_tasks";
     }
 
 
