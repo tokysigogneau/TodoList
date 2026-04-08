@@ -44,14 +44,14 @@ public class TaskController {
     public String categoryTask(Model model,
                                @RequestParam(name="page", defaultValue = "0")int page,
                                @RequestParam (name="category",defaultValue = "1") Long cat_id,
-                               @RequestParam (name="name",defaultValue = "") String name
+                               @RequestParam (name="keyword",defaultValue = "") String keyword
     ){
         // list of all categories
         List<Category> categories = categoryRepository.findAll();
 
         //List of task by category, format : Page
 //        Page<Task> cat_task = taskRepository.findByCategoryId( cat_id , PageRequest.of(page, 5));
-        Page<Task> cat_task = taskRepository.findByCategoryIdAndNameContains(  cat_id, name  , PageRequest.of(page, 5));
+        Page<Task> cat_task = taskRepository.findByCategoryIdAndNameContains(  cat_id, keyword  , PageRequest.of(page, 5));
 
         model.addAttribute("listTasks", cat_task.getContent());
         model.addAttribute("category_list", categories);
@@ -59,7 +59,7 @@ public class TaskController {
         model.addAttribute("pages", new int [cat_task.getTotalPages()]);
 
         model.addAttribute("currentPage", page);
-        model.addAttribute("keyword", cat_id);
+        model.addAttribute("keyword", keyword);
         return "my_tasks";
     }
 
