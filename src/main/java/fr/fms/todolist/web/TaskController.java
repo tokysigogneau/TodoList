@@ -43,23 +43,28 @@ public class TaskController {
     @GetMapping("/my_tasks")
     public String categoryTask(Model model,
                                @RequestParam(name="page", defaultValue = "0")int page,
-                               @RequestParam (name="category",defaultValue = "1") Long cat_id,
+                               @RequestParam (name="category",defaultValue = "0") Long cat_id,
                                @RequestParam (name="keyword",defaultValue = "") String keyword
     ){
         // list of all categories
         List<Category> categories = categoryRepository.findAll();
 
+        Page<Task> cat_task;
         //List of task by category, format : Page
-//        Page<Task> cat_task = taskRepository.findByCategoryId( cat_id , PageRequest.of(page, 5));
-        Page<Task> cat_task = taskRepository.findByCategoryIdAndNameContains(  cat_id, keyword  , PageRequest.of(page, 5));
+        if (cat_id==0L){
+            cat_task = taskRepository.findByNameContains(keyword  , PageRequest.of(page, 5));
+        } else {
+            cat_task = taskRepository.findByCategoryIdAndNameContains(  cat_id, keyword  , PageRequest.of(page, 5));
+        }
+
 
         model.addAttribute("listTasks", cat_task.getContent());
         model.addAttribute("category_list", categories);
-
         model.addAttribute("pages", new int [cat_task.getTotalPages()]);
-
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("cat_id", cat_id);
+
         return "my_tasks";
     }
 
