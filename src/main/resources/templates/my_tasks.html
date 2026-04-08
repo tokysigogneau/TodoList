@@ -71,7 +71,17 @@
                         <td th:text="${a.date}"></td>
                         <td th:text="${a.description}"></td>
                         <td th:text="${a.category.name}"></td>
-                        <td th:text="${a.progression.name}"></td>
+                        <td>
+                            <form th:action="@{'/update_progression/' + ${a.id}}" method="post">
+                                <select name="progressionId" onchange="this.form.submit()">
+                                    <option th:each="i : ${progressions}"
+                                            th:value="${i.id}"
+                                            th:text="${i.name}"
+                                            th:selected="${a.progression != null and i.id == a.progression.id}">
+                                    </option>
+                                </select>
+                            </form>
+                        </td>
                         <td style="white-space: nowrap; width: 1%;">
                             <a class="btn btn-danger"
                                th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
