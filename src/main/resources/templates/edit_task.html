@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "layout">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter un article</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="col-md-4 col-xs-8">
+        <div class="pannel-heading" >Modifier une tâche</div>
+        <div class="pannel-body" >
+            <form th:action="@{'/edit_task/' + ${task.id}}" th:object="${task}" method="post">
+
+                <div class="form-group">
+                    <label class="control-label"> Name</label>
+                    <input class="form-control" type="text" name="name" th:value="${task.name}">
+                    <span th:errors="${task.name}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"> Date</label>
+                    <input class="form-control" type="datetime-local" name="date" th:value="${task.date}">
+                    <span th:errors="${task.date}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"> Description</label>
+                    <input class="form-control" type="text" name="description" th:value="${task.description}">
+                    <span th:errors="${task.description}" class="text-danger"></span>
+                </div>
+
+                <!--                    Change category to display choices from existing category-->
+                <!--                        ex : select + option-->
+                <select name="category">
+                    <option th:each="i : ${category_list}" th:value="${i.id}" th:text="${i.name}">
+                    </option>
+                </select>
+
+                <select name="progression">
+                    <option th:each="i : ${progression_list}" th:value="${i.id}" th:text="${i.name}">
+                    </option>
+                </select>
+
+                <!--                Hide choice : put "1" by default-->
+                <input type="hidden" name="user" th:value="1">
+
+
+                <button type="submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+
+</html>
