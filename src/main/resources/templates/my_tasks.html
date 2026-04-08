@@ -72,6 +72,13 @@
                         <td th:text="${a.description}"></td>
                         <td th:text="${a.category.name}"></td>
                         <td th:text="${a.progression.name}"></td>
+                        <td style="white-space: nowrap; width: 1%;">
+                            <a class="btn btn-danger"
+                               th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
+                                <i class="bi bi-trash3"></i>
+                                Delete
+                            </a>
+                        </td>
 
 
                     </tr>
