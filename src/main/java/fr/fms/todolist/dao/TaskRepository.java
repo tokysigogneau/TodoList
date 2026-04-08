@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     Page<Task> findByCategoryId(Long id, Pageable pageable);
-    Page<Task> findByDescriptionContains(String description, Pageable pageable);
+    Page<Task> findByCategoryIdAndNameContains(Long id, String name, Pageable pageable);
 }
