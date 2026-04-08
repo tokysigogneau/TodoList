@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -87,6 +88,47 @@ public class TaskController {
 
         taskRepository.save(task);
         return "redirect:/index";
+    }
+
+    //Edit task
+
+    @GetMapping("/edit_task/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+
+        //there is an error without the ".orElseThrow()"
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid task id: " + id));
+
+        model.addAttribute("task", task);
+        model.addAttribute("category_list", categoryRepository.findAll());
+        model.addAttribute("progression_list", progressionRepository.findAll());
+
+        return "edit_task";
+    }
+
+
+    @PostMapping("/edit_task/{id}")
+    public String edit(@PathVariable Long id,
+                       @Valid Task task,
+                       BindingResult bindingResult,
+                       Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("category_list", categoryRepository.findAll());
+            model.addAttribute("progression_list", progressionRepository.findAll());
+            return "edit_task";
+        }
+        Task bddTask = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid task id: " + id));
+
+        bddTask.setName(task.getName());
+        bddTask.setDescription(task.getDescription());
+        bddTask.setCategory(task.getCategory());
+        bddTask.setProgression(task.getProgression());
+
+        taskRepository.save(bddTask);
+
+        return "redirect:/my_tasks";
     }
 
 
