@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'[Affichage teoz activé]
+!pragma teoz true
+'[Titre du graphique]
+title Sequence diagram for " display task list "
+
+'[Titre du cas d'utilisation]
+== Display task list ==
+
+'****** Initialisation acteur ******
+'[Cache titre de pied 'User' 'System']
+hide footbox
+
+
+'[Active 'barre de vie']
+Activate System
+Activate User
+
+'[Active la numérotation]
+autonumber
+
+'Début de la séquence
+alt#Gold #LightBlue
+    User -> System: Request task list
+
+
+    alt#red user not connected
+    System -> User: Need to log in first
+    end
+
+    alt#green user connected
+    System -> User: Send list of tasks
+    end
+'Fin de la numérotation '
+autonumber stop
+end
+'[Désactive 'barre de vie']
+Deactivate System
+
+@enduml
