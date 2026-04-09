@@ -25,4 +25,16 @@ body {
     max-width : 100%;
 }
 
+.task-card {
+        border: 2px solid black;
+        margin: 7px;
+        padding: 15px;
+        border-radius : 25px;
+        width: 90%;
+}
+
+.progression-column{
+    width: 100%;
+    margin: 0;
+}
 
