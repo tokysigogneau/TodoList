@@ -1,3 +1,28 @@
 body {
     margin: 0;
 }
+
+.pub-card{
+    display : flex;
+    padding: 30px;
+    border: 1px solid black;
+    margin: 50px;
+    justify-content : space-around;
+}
+
+.pub-card img{
+    max-width: 400px;
+}
+
+.pub-card-big {
+    padding: 30px;
+    border: 1px solid black;
+    margin: 50px;
+    justify-content : space-around;
+}
+
+.pub-card-big img {
+    max-width : 100%;
+}
+
+
