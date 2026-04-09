@@ -16,8 +16,12 @@
 <div layout:fragment="content">
 
     <div class="container">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Affichage par progression</label>
+        </div>
 
-
+<!--        MAIN VIEW-->
         <div class="panel panel-primary">
             <div class="panel-heading">Task par categories</div>
 
@@ -105,6 +109,31 @@
 
             </div>
         </div>
+
+<!--        ALTERNATE VIEW-->
+        <div class="progression-display ">
+            <h4>Affichage par progression</h4>
+            <div class="progression-content d-flex">
+                <div class="display-to-do">
+                    <h5>A faire</h5>
+                </div>
+
+                <div class="display-in-progress">
+                    <h5>En cours</h5>
+
+                </div>
+
+                <div class="display-done">
+                    <h5>Finis</h5>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
     </div>
 </div>
 </body>
