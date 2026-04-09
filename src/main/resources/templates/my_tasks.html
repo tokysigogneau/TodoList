@@ -40,8 +40,6 @@
 
                 </ul>
 
-
-
             </div>
 
             <div class="panel-body">
@@ -62,9 +60,8 @@
                         <th>Description</th>
                         <th>Category</th>
                         <th>Progression</th>
-
-
                     </tr>
+
                     <tr th:each="a:${listTasks}">
                         <td th:text="${a.id}"></td>
                         <td >
@@ -114,17 +111,69 @@
         <div class="progression-display ">
             <h4>Affichage par progression</h4>
             <div class="progression-content d-flex">
-                <div class="display-to-do">
+                <div class="progression-column">
                     <h5>A faire</h5>
+                    <div class="card-list">
+                        <tr th:each="a:${progress_todo}">
+                            <div class="task-card">
+
+                                <a th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
+                                </a>
+                                <p th:text="${a.description}" ></p>
+                                <div class="d-flex date-category">
+                                    <p th:text="${a.date}"></p>
+                                    <p th:text="${a.category.name}"></p>
+                                </div>
+
+
+                            </div>
+
+                        </tr>
+
+                    </div>
                 </div>
 
-                <div class="display-in-progress">
+                <div class="progression-column">
                     <h5>En cours</h5>
+                    <div class="card-list">
+                        <tr th:each="a:${progress_in_progress}">
+                            <div class="task-card">
+
+                                <a th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
+                                </a>
+                                <p th:text="${a.description}" ></p>
+                                <div class="d-flex date-category">
+                                    <p th:text="${a.date}"></p>
+                                    <p th:text="${a.category.name}"></p>
+                                </div>
+
+                            </div>
+
+                        </tr>
+
+                    </div>
 
                 </div>
 
-                <div class="display-done">
+                <div class="progression-column">
                     <h5>Finis</h5>
+                    <div class="card-list">
+                        <tr th:each="a:${progress_done}">
+                            <div class="task-card">
+
+                                <a th:text="${a.name}" th:href="@{/edit_task/{id}(id=${a.id})}">
+                                </a>
+                                <p th:text="${a.description}" ></p>
+                                <div class="d-flex date-category">
+                                    <p th:text="${a.date}"></p>
+                                    <p th:text="${a.category.name}"></p>
+                                </div>
+
+                            </div>
+
+                        </tr>
+
+                    </div>
 
                 </div>
 
