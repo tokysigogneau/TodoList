@@ -124,6 +124,16 @@
                                     <p th:text="${a.date}"></p>
                                     <p th:text="${a.category.name}"></p>
                                 </div>
+                                <!--                                update progression-->
+                                <form  th:action="@{'/update_progression/' + ${a.id}}" method="post">
+                                    <select class="form-select" name="progressionId" onchange="this.form.submit()">
+                                        <option th:each="i : ${progressions}"
+                                                th:value="${i.id}"
+                                                th:text="${i.name}"
+                                                th:selected="${a.progression != null and i.id == a.progression.id}">
+                                        </option>
+                                    </select>
+                                </form>
 
 
                             </div>
@@ -146,6 +156,16 @@
                                     <p th:text="${a.date}"></p>
                                     <p th:text="${a.category.name}"></p>
                                 </div>
+                                <!--                                update progression-->
+                                <form th:action="@{'/update_progression/' + ${a.id}}" method="post">
+                                    <select name="progressionId" onchange="this.form.submit()">
+                                        <option th:each="i : ${progressions}"
+                                                th:value="${i.id}"
+                                                th:text="${i.name}"
+                                                th:selected="${a.progression != null and i.id == a.progression.id}">
+                                        </option>
+                                    </select>
+                                </form>
 
                             </div>
 
@@ -169,6 +189,16 @@
                                     <p th:text="${a.category.name}"></p>
                                 </div>
 
+<!--                                update progression-->
+                                <form th:action="@{'/update_progression/' + ${a.id}}" method="post">
+                                    <select name="progressionId" onchange="this.form.submit()">
+                                        <option th:each="i : ${progressions}"
+                                                th:value="${i.id}"
+                                                th:text="${i.name}"
+                                                th:selected="${a.progression != null and i.id == a.progression.id}">
+                                        </option>
+                                    </select>
+                                </form>
                             </div>
 
                         </tr>
