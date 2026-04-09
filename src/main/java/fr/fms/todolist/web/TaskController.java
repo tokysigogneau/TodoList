@@ -60,6 +60,11 @@ public class TaskController {
             cat_task = taskRepository.findByCategoryIdAndNameContains(  cat_id, keyword  , PageRequest.of(page, 5));
         }
 
+        //List of task by progression
+        List<Task> progress_todo = taskRepository.findByProgressionId((long) 1);
+        List<Task> progress_in_progress = taskRepository.findByProgressionId((long) 2);
+        List<Task> progress_done = taskRepository.findByProgressionId((long) 3);
+
 
         model.addAttribute("listTasks", cat_task.getContent());
         model.addAttribute("category_list", categories);
@@ -68,6 +73,9 @@ public class TaskController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("cat_id", cat_id);
         model.addAttribute("progressions", progressions);
+        model.addAttribute("progress_todo", progress_todo);
+        model.addAttribute("progress_in_progress", progress_in_progress);
+        model.addAttribute("progress_done", progress_done);
 
         return "my_tasks";
     }
