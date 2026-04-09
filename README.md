@@ -20,11 +20,11 @@ java version 1.8
 ### Project's Structure
 
 <img width="353" height="386" alt="{FADC50EF-7A8C-4DCE-A6AE-1242D4935FBF}" src="https://github.com/user-attachments/assets/cb592580-a9e5-4614-a673-d5a434dfcf38" />
+<br />
+There is only one controller which is TaskController.java. <br />
+The static/css directory contains bootstrap 5.1 file and a style.css file <br />
 
-There is only one controller which is TaskController.java.
-The static/css directory contains bootstrap 5.1 file and a style.css file
-
-All the html files are located in templates directory including the layout.
+All the html files are located in templates directory including the layout. <br />
 
 
 
