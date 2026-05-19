@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -30,12 +31,13 @@ public class Task implements Serializable {
 
     @NotNull
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
-    private Date date;
+    private LocalDate date;
 
     @NotNull
     @Size(min=5,max=100)
     private String description;
 
+    @NotNull
     @ManyToOne
     private Category category;
 
@@ -45,13 +47,20 @@ public class Task implements Serializable {
     @ManyToOne
     private User user;
 
-    public Task(String name, Date date, String description, Category category, Progression progression, User user){
+    public Task(String name, LocalDate date, String description, Category category, Progression progression, User user){
         this.name = name;
         this.date = date;
         this.description = description;
         this.category = category;
         this.progression = progression;
         this.user = user;
+    }
+
+    public Task(String name, LocalDate date, String description, Category category){
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.category = category;
     }
 
     public String toString(){
@@ -75,11 +84,11 @@ public class Task implements Serializable {
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
